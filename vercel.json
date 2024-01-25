@@ -4,7 +4,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "dist/main.js",
+        "dest": "/vercel/output/$1",
         "methods": [
           "GET",
           "POST",
