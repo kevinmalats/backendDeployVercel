@@ -1,0 +1,25 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Pokemon {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  img       String
+  type      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   @map("user_id")
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
+  name    String    @unique
+  pokemon Pokemon[]
+}
