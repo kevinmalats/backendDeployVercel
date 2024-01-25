@@ -1,12 +1,6 @@
 {
     "version": 2,
-    "env": {
-        "PORT": "@port",
-        "DATABASE_NAME": "@database",
-        "API_EXTERNAL": "@api",
-        "DATABASE_URL": "@url_database",
-        "SECRET_KEY": "@secret"
-    },
+ 
     "builds": [
         {
             "src": "src/main.ts",
