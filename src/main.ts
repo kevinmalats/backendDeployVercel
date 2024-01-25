@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 
 import dotenv = require('dotenv');
 dotenv.config();
+console.log(dotenv);
 let port: number = parseInt(process.env.PORT) || 3000;
 
 async function bootstrap() {
