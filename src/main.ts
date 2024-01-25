@@ -12,6 +12,7 @@ async function bootstrap() {
     methods: 'GET,PUT,POST,DELETE',
     allowedHeaders: 'Content-Type, Accept',
   });
+
   try {
     await app.listen(port);
     console.log(`Server running on port ${port}`);
