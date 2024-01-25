@@ -6,16 +6,12 @@
           "use": "@vercel/node" 
         }
       ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/vercel/output/$1",
-        "methods": [
-          "GET",
-          "POST",
-          "PUT",
-          "DELETE"
+      "routes": [
+        {
+          "src": "/(.*)",
+          "dest": "dist/main.js",
+          "methods": ["GET", "POST", "PUT", "DELETE"]
+          
+        }
       ]
-      }
-    ]
   }
