@@ -22,6 +22,5 @@
           "DELETE"
       ]
       }
-    ],
-    "installCommand": "npm install --legacy-peer-deps"
+    ]
   }
