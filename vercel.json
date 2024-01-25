@@ -1,11 +1,11 @@
 {
     "version": 2,
     "env": {
-        "PORT": "@PORT",
-        "DATABASE_NAME": "@DATABASE_NAME",
-        "API_EXTERNAL": "@API_EXTERNAL",
-        "DATABASE_URL": "@DATABASE_URL",
-        "SECRET_KEY": "@SECRET_KEY"
+        "PORT": "@port",
+        "DATABASE_NAME": "@database",
+        "API_EXTERNAL": "@api",
+        "DATABASE_URL": "@url_database",
+        "SECRET_KEY": "@secret"
     },
     "builds": [
         {
