@@ -20,12 +20,13 @@ export class PokemonsController {
     @Query('limit') limit: number,
     @Query('offset') offset: number,
   ): Promise<PokemonDTO[]> {
-    return this.pokemonService.getPokemons(limit, offset);
+    console.log(offset);
+    const response = await this.pokemonService.getPokemons(limit, offset);
+    return response;
   }
 
   @Get(':name')
   async getPokemonByName(@Param('name') name: string): Promise<PokemonDTO[]> {
-    console.log(name);
     const response = await this.pokemonService.getPokemon(name);
     return response;
   }
@@ -34,6 +35,12 @@ export class PokemonsController {
   async savePokemonTeam(@Body() data: RequestPostSave): Promise<PokemonDTO[]> {
     console.log('saving');
     const response = await this.pokemonService.save(data);
+    return response;
+  }
+
+  @Get('teams/:name')
+  async getPokemonTeams(@Param('name') name: string): Promise<PokemonDTO[]> {
+    const response = await this.pokemonService.getTeams(name);
     return response;
   }
 }

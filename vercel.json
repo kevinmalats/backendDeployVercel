@@ -1,17 +1,38 @@
 {
     "version": 2,
+    "env": {
+        "DATABASE_NAME": "condorsoft",
+        "API_EXTERNAL": "https://pokeapi.co/api/v2/",
+        "DATABASE_URL": "mongodb+srv://favio:ph42wz4NUqGEMxmU@cluster0.htgjmgw.mongodb.net/condorsoft",
+        "SECRET_KEY": "leini"
+    },
+
+
+      
     "builds": [
         {
-          "src": "dist/main.js", 
-          "use": "@vercel/node" 
+          "src": "dist/main.js",
+          "use": "@vercel/node",
+          "config": {
+            "prisma": {
+              "generate": true
+            }
+          }
         }
       ],
+    
       "routes": [
         {
-          "src": "/(.*)",
-          "dest": "dist/main.js",
-          "methods": ["GET", "POST", "PUT", "DELETE"]
-          
+            "src": "/(.*)",
+            "dest": "dist/main.js",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
+            ]
         }
-      ]
+    ]
+
   }

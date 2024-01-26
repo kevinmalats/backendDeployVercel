@@ -49,11 +49,31 @@ export class PokemonsService {
       }
     });
   }
+
+  async getTeams(name: string): Promise<any> {
+    const query = { where: { name: name } };
+    const userId = await this.prisma.user.findFirst(query);
+    console.log(userId);
+    if (!userId) {
+      throw new Error('User not found');
+    }
+
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId.id },
+      include: { pokemon: true },
+    });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    return user.pokemon;
+  }
   async getPokemon(name: string): Promise<PokemonDTO[]> {
     return new Promise(async (resolve, reject) => {
       try {
         const endpoint = `pokemon/${name}`;
-        console.log(endpoint);
+
         const pok: Pokedex = await this.httpClient.get(endpoint);
         const pokem: PokemonDTO = {
           name: pok.name,
@@ -72,16 +92,17 @@ export class PokemonsService {
         };
         resolve([pokem]);
       } catch (error) {
-        console.log(error);
+        console.log('error');
         resolve([]);
       }
     });
   }
 
   async save(data: RequestPostSave): Promise<any> {
+    const name: string = data.name.toLowerCase().replace(' ', '');
     const user = await this.prisma.user.create({
       data: {
-        name: data.name,
+        name,
       },
     });
     console.log(user);
