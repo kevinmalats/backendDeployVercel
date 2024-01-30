@@ -51,7 +51,8 @@ export class PokemonsService {
   }
 
   async getTeams(name: string): Promise<any> {
-    const query = { where: { name: name } };
+    const nameClean: string = name.toLowerCase().replace(' ', '');
+    const query = { where: { name: nameClean } };
     const userId = await this.prisma.user.findFirst(query);
     console.log(userId);
     if (!userId) {
@@ -62,7 +63,7 @@ export class PokemonsService {
       where: { id: userId.id },
       include: { pokemon: true },
     });
-
+    console.log(user);
     if (!user) {
       throw new Error('User not found');
     }
